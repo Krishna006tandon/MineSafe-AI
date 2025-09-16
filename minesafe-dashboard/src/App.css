@@ -2,6 +2,7 @@
   width: 100vw;
   height: 100vh;
   position: relative;
+  padding-top: 60px; /* To account for the fixed header */
 }
 
 .high-alert {

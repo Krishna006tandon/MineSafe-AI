@@ -16,9 +16,10 @@ const data = [
   { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
 ];
 
-export function Hotspot({ position, riskLevel, alertLevel }) {
+export function Hotspot({ position, riskLevel, alertLevel, probability, confidence }) {
   const [hovered, setHover] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [showDroneImagery, setShowDroneImagery] = useState(false);
   const cameraControls = useContext(CameraContext);
 
   const { scale } = useSpring({
@@ -56,13 +57,33 @@ export function Hotspot({ position, riskLevel, alertLevel }) {
       onPointerOut={() => setHover(false)}
       onClick={handleClick}
     >
-      <meshBasicMaterial color={hovered ? 'hotpink' : riskLevel === 'High' ? 'red' : riskLevel === 'Medium' ? 'orange' : 'green'} />
+      <meshStandardMaterial
+        color={riskLevel === 'High' ? 'red' : riskLevel === 'Medium' ? 'orange' : 'green'}
+        emissive={riskLevel === 'High' ? 'red' : 'black'}
+        emissiveIntensity={riskLevel === 'High' ? (hovered ? 1.5 : scale.to([1, 1.5], [0.5, 1.0])) : 0}
+        transparent
+        opacity={0.5 + confidence * 0.5}
+      />
       {clicked && (
         <Html center>
           <div className="holographic-panel" style={{width: '400px', height: '300px'}}>
-            <h2>Risk Assessment</h2>
-            <p>Rockfall Probability: {riskLevel}</p>
-            <ResponsiveContainer width="100%" height="80%">
+            <h2>Risk Assessment - Sector {position[0] > 0 ? 'A' : 'B'}</h2>
+            <p><strong>Rockfall Probability Forecast:</strong> {`${(probability * 100).toFixed(0)}%`} (Confidence: {`${(confidence * 100).toFixed(0)}%`})</p>
+            <p><strong>Live Geotechnical Sensor Data:</strong></p>
+            <ul>
+              <li>Displacement: {Math.random() * 10} mm</li>
+              <li>Strain: {Math.random() * 0.1} %</li>
+            </ul>
+            <p><strong>High-resolution Drone Imagery:</strong> <a href="#" style={{color: '#00aaff'}} onClick={(e) => { e.preventDefault(); setShowDroneImagery(!showDroneImagery); }}>View Latest</a></p>
+            {showDroneImagery && (
+              <img src="https://via.placeholder.com/300x150?text=Drone+Imagery" alt="Drone Imagery" style={{ width: '100%', marginTop: '10px' }} />
+            )}
+            <p><strong>Environmental Factors:</strong></p>
+            <ul>
+              <li>Rainfall (24h): {Math.floor(Math.random() * 20)} mm</li>
+              <li>Temperature: {Math.floor(Math.random() * 10) + 15}°C</li>
+            </ul>
+            <ResponsiveContainer width="100%" height="30%">
               <LineChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 170, 255, 0.5)" />
                 <XAxis dataKey="name" stroke="white" />
