@@ -1,0 +1,21 @@
+.holographic-panel {
+  background: rgba(0, 100, 255, 0.1);
+  border: 1px solid rgba(0, 100, 255, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.holographic-panel h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #00aaff;
+  text-shadow: 0 0 10px #00aaff;
+}
+
+.holographic-panel p {
+  margin: 10px 0 0;
+}
