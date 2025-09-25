@@ -75,6 +75,7 @@ export function Hotspot({ position, riskLevel, alertLevel, probability, confiden
       {clicked && (
         <Html center>
           <div className="holographic-panel" style={{width: '400px', height: '300px'}}>
+            <button className="close-button" onClick={() => setClicked(false)}>X</button>
             <h2>Risk Assessment - Sector {position[0] > 0 ? 'A' : 'B'}</h2>
             <p><strong>Rockfall Probability Forecast:</strong> {`${(probability * 100).toFixed(0)}%`} (Confidence: {`${(confidence * 100).toFixed(0)}%`})</p>
             <p><strong>Live Geotechnical Sensor Data:</strong></p>
@@ -84,7 +85,7 @@ export function Hotspot({ position, riskLevel, alertLevel, probability, confiden
             </ul>
             <p><strong>High-resolution Drone Imagery:</strong> <a href="#" style={{color: '#00aaff'}} onClick={(e) => { e.preventDefault(); setShowDroneImagery(!showDroneImagery); }}>View Latest</a></p>
             {showDroneImagery && (
-              <img src="https://via.placeholder.com/300x150?text=Drone+Imagery" alt="Drone Imagery" style={{ width: '100%', marginTop: '10px' }} />
+              <img src="https://source.unsplash.com/300x150/?mine,aerial" alt="Drone Imagery" style={{ width: '100%', marginTop: '10px' }} />
             )}
             <p><strong>Environmental Factors:</strong></p>
             <ul>

@@ -3,37 +3,34 @@ import { Canvas } from '@react-three/fiber';
 import { Mine } from './Mine';
 import { Camera } from './Camera';
 import { Hud } from './Hud';
-import ReportTable from './ReportTable'; // Import ReportTable
-import { DashboardHeader } from './DashboardHeader'; // Import DashboardHeader
+import ReportTable from './ReportTable';
+import { DashboardHeader } from './DashboardHeader';
 import './App.css';
-import './ReportTable.css'; // Import ReportTable.css
+import './ReportTable.css';
 
 function App() {
   const [alertLevel, setAlertLevel] = useState<'high' | 'medium' | 'low' | 'none'>('none');
-  const [showReportTable, setShowReportTable] = useState(false); // New state for toggling report table
+  const [showReportTable, setShowReportTable] = useState(false);
 
   const toggleAlert = () => {
     setAlertLevel(prev => (prev === 'none' ? 'high' : 'none'));
   };
 
-  const toggleReportTable = () => { // New function to toggle report table
+  const toggleReportTable = () => {
     setShowReportTable(prev => !prev);
   };
 
   return (
     <div className={`app-container ${alertLevel === 'high' ? 'high-alert' : ''}`}>
-      <DashboardHeader /> {/* Render the DashboardHeader */}
+      <DashboardHeader
+        toggleAlert={toggleAlert}
+        toggleReportTable={toggleReportTable}
+        showReportTable={showReportTable}
+      />
       <Hud alertLevel={alertLevel} />
-      <button onClick={toggleAlert} style={{position: 'absolute', top: '150px', left: '20px', zIndex: 101}}>
-        Toggle Alert
-      </button>
-      {/* New button to toggle Report Table */}
-      <button onClick={toggleReportTable} style={{position: 'absolute', top: '190px', left: '20px', zIndex: 101}}>
-        {showReportTable ? 'Show Mine View' : 'Show Report Table'}
-      </button>
 
       {showReportTable ? (
-        <ReportTable /> // Conditionally render ReportTable
+        <ReportTable toggleReportTable={toggleReportTable} />
       ) : (
         <Canvas camera={{ position: [0, 15, 20] }}>
           <Camera>

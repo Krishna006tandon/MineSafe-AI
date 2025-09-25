@@ -1,6 +1,10 @@
-import React, { useState, useMemo } from 'react'; // Import useMemo
+import React, { useState, useMemo } from 'react';
 
-const ReportTable: React.FC = () => {
+interface ReportTableProps {
+  toggleReportTable: () => void;
+}
+
+const ReportTable: React.FC<ReportTableProps> = ({ toggleReportTable }) => {
   const [incidents, setIncidents] = useState([
     {
       id: 1,
@@ -37,8 +41,8 @@ const ReportTable: React.FC = () => {
     },
   ]);
 
-  const [filterStatus, setFilterStatus] = useState('All'); // New state for status filter
-  const [filterAssignee, setFilterAssignee] = useState('All'); // New state for assignee filter
+  const [filterStatus, setFilterStatus] = useState('All');
+  const [filterAssignee, setFilterAssignee] = useState('All');
 
   const handleAssignmentChange = (id: number, newAssignee: string) => {
     setIncidents(prevIncidents =>
@@ -78,7 +82,14 @@ const ReportTable: React.FC = () => {
     );
   };
 
-  // Filtered incidents based on filterStatus and filterAssignee
+  const handleResolve = (id: number) => {
+    setIncidents(prevIncidents =>
+      prevIncidents.map(incident =>
+        incident.id === id ? { ...incident, status: 'Resolved' } : incident
+      )
+    );
+  };
+
   const filteredIncidents = useMemo(() => {
     return incidents.filter(incident => {
       const statusMatch = filterStatus === 'All' || incident.status === filterStatus;
@@ -89,10 +100,10 @@ const ReportTable: React.FC = () => {
 
   return (
     <div className="report-table-container">
+      <button className="close-table-btn" onClick={toggleReportTable}>X</button>
       <h2>Incident Reports</h2>
 
-      <div style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
-        {/* Status Filter */}
+      <div className="filters-container">
         <label>
           Filter by Status:
           <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
@@ -103,7 +114,6 @@ const ReportTable: React.FC = () => {
           </select>
         </label>
 
-        {/* Assignee Filter */}
         <label>
           Filter by Assignee:
           <select value={filterAssignee} onChange={(e) => setFilterAssignee(e.target.value)}>
@@ -155,27 +165,26 @@ const ReportTable: React.FC = () => {
                   <option value="Unassigned">Unassigned</option>
                 </select>
               </td>
-              <td>
-                <div>
+              <td className="comments-cell">
+                <div className="comments-container">
                   {incident.comments.map((comment, index) => (
-                    <p key={index} style={{ margin: '0 0 5px 0', fontSize: '0.9em' }}>
-                      <span style={{ fontWeight: 'bold', color: '#00aaff' }}>[{comment.timestamp}]</span> {comment.text}
+                    <p key={index} className="comment-text">
+                      <span className="comment-timestamp">[{comment.timestamp}]</span> {comment.text}
                     </p>
                   ))}
-                  <div style={{ display: 'flex', marginTop: '5px' }}>
-                    <input
-                      type="text"
-                      value={incident.newComment}
-                      onChange={(e) => handleNewCommentChange(incident.id, e.target.value)}
-                      placeholder="Add new comment..."
-                      style={{ flexGrow: 1, marginRight: '5px', boxSizing: 'border-box' }}
-                    />
-                    <button onClick={() => addComment(incident.id)}>Add</button>
-                  </div>
+                </div>
+                <div className="add-comment-container">
+                  <input
+                    type="text"
+                    value={incident.newComment}
+                    onChange={(e) => handleNewCommentChange(incident.id, e.target.value)}
+                    placeholder="Add new comment..."
+                  />
+                  <button onClick={() => addComment(incident.id)}>Add</button>
                 </div>
               </td>
               <td>
-                <button>Resolve</button>
+                <button onClick={() => handleResolve(incident.id)}>Resolve</button>
               </td>
             </tr>
           ))}
