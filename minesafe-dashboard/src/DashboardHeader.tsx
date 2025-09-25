@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './DashboardHeader.css'; // We'll create this CSS file next
 
 export function DashboardHeader() {

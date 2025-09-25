@@ -1,6 +1,10 @@
 import './Hud.css';
 
-export function Hud({ alertLevel }) {
+interface HudProps {
+  alertLevel: 'high' | 'medium' | 'low' | 'none';
+}
+
+export function Hud({ alertLevel }: HudProps) {
   const isHighAlert = alertLevel === 'high';
 
   return (

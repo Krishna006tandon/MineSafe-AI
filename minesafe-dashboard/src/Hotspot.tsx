@@ -16,7 +16,15 @@ const data = [
   { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
 ];
 
-export function Hotspot({ position, riskLevel, alertLevel, probability, confidence }) {
+interface HotspotProps {
+  position: [number, number, number];
+  riskLevel: 'High' | 'Medium' | 'Low';
+  alertLevel: 'high' | 'medium' | 'low' | 'none';
+  probability: number;
+  confidence: number;
+}
+
+export function Hotspot({ position, riskLevel, alertLevel, probability, confidence }: HotspotProps) {
   const [hovered, setHover] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [showDroneImagery, setShowDroneImagery] = useState(false);
@@ -57,7 +65,7 @@ export function Hotspot({ position, riskLevel, alertLevel, probability, confiden
       onPointerOut={() => setHover(false)}
       onClick={handleClick}
     >
-      <meshStandardMaterial
+      <animated.meshStandardMaterial
         color={riskLevel === 'High' ? 'red' : riskLevel === 'Medium' ? 'orange' : 'green'}
         emissive={riskLevel === 'High' ? 'red' : 'black'}
         emissiveIntensity={riskLevel === 'High' ? (hovered ? 1.5 : scale.to([1, 1.5], [0.5, 1.0])) : 0}

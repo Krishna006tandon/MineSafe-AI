@@ -9,7 +9,7 @@ import './App.css';
 import './ReportTable.css'; // Import ReportTable.css
 
 function App() {
-  const [alertLevel, setAlertLevel] = useState('none');
+  const [alertLevel, setAlertLevel] = useState<'high' | 'medium' | 'low' | 'none'>('none');
   const [showReportTable, setShowReportTable] = useState(false); // New state for toggling report table
 
   const toggleAlert = () => {

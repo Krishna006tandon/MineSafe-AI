@@ -3,7 +3,11 @@ import * as THREE from 'three';
 import { createNoise2D } from 'simplex-noise';
 import { Hotspot } from './Hotspot';
 
-export function Mine({ alertLevel }) {
+interface MineProps {
+  alertLevel: 'high' | 'medium' | 'low' | 'none';
+}
+
+export function Mine({ alertLevel }: MineProps) {
   const noise2D = createNoise2D();
 
   const geometry = useMemo(() => {
