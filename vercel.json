@@ -4,14 +4,14 @@
       "src": "minesafe-dashboard/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "minesafe-dashboard/dist"
+        "outputDirectory": "dist"
       }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "minesafe-dashboard/"
+      "dest": "/minesafe-dashboard/dist/index.html"
     }
   ]
 }
