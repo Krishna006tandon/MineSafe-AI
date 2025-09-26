@@ -29,8 +29,7 @@ export function DashboardHeader({ toggleAlert, toggleReportTable, showReportTabl
 
   return (
     <header className="dashboard-header">
-      <div className="prototype-banner">🔬 MineSafe-AI: Prototype</div>
-      <div className="competition-banner">🏆 Competition Preview Build</div>
+      <div className="competition-banner">🏆This content is provided solely for the preview of our prototype.</div>
       <div className="header-main-content">
         <div className="left-section">
           <span className="project-name">MineSafe-AI</span>
