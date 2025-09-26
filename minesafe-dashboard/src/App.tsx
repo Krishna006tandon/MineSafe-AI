@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Mine } from './Mine';
 import { Camera } from './Camera';
@@ -11,6 +11,14 @@ import './ReportTable.css';
 function App() {
   const [alertLevel, setAlertLevel] = useState<'high' | 'medium' | 'low' | 'none'>('none');
   const [showReportTable, setShowReportTable] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleAlert = () => {
     setAlertLevel(prev => (prev === 'none' ? 'high' : 'none'));
@@ -19,6 +27,14 @@ function App() {
   const toggleReportTable = () => {
     setShowReportTable(prev => !prev);
   };
+
+  if (isLoading) {
+    return (
+      <div class="loader-container">
+        <div class="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <div className={`app-container ${alertLevel === 'high' ? 'high-alert' : ''}`}>

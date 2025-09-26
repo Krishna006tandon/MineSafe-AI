@@ -15,10 +15,10 @@ export function Hud({ alertLevel }: HudProps) {
           {isHighAlert ? 'HIGH ALERT' : 'Safe'}
         </p>
       </div>
-      <div className="hud-item">
+      {/* <div className="hud-item">
         <h3>Active High-Risk Zones</h3>
-        <p>1</p>
-      </div>
+        <p>0</p>
+      </div> */}
     </div>
   );
 }

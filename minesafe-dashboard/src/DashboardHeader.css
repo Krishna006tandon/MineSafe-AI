@@ -69,8 +69,17 @@
   transition: color 0.3s ease;
 }
 
-.icon-container:hover {
-  color: #61dafb; /* Highlight on hover */
+.icon-container:hover .icon {
+  animation: bobbing 0.5s infinite alternate;
+}
+
+@keyframes bobbing {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
 }
 
 .icon {
