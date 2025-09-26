@@ -5,6 +5,7 @@ import { Camera } from './Camera';
 import { Hud } from './Hud';
 import ReportTable from './ReportTable';
 import { DashboardHeader } from './DashboardHeader';
+import { Chatbot } from './Chatbot';
 import './App.css';
 import './ReportTable.css';
 
@@ -56,6 +57,7 @@ function App() {
           </Camera>
         </Canvas>
       )}
+      <Chatbot />
     </div>
   );
 }
