@@ -62,7 +62,7 @@ export function Chatbot() {
         <span>⛏️</span>
       </div>
       {isOpen && (
-        <div className={`chatbot-fullscreen ${isOpen ? 'open' : ''}`}>
+        <div id="chatbot" className={`chatbot-fullscreen ${isOpen ? 'open' : ''}`}>
           <div className="chatbot-header">
             <div className="chatbot-header-info">
               <div className="online-indicator"></div>

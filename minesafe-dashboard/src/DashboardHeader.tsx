@@ -34,22 +34,22 @@ export function DashboardHeader({ toggleAlert, toggleReportTable, showReportTabl
         <div className="left-section">
           <span className="project-name">MineSafe-AI</span>
         </div>
-        <div className="right-section">
-          <div className="icon-container" onClick={toggleAlert}>
-            <span className="icon">🔔</span>
-            <span className="icon-text">Toggle Alert</span>
+        <div class="right-section">
+          <div id="toggle-alert-button" class="icon-container" onClick={toggleAlert}>
+            <span class="icon">🔔</span>
+            <span class="icon-text">Toggle Alert</span>
           </div>
-          <div className="icon-container" onClick={toggleReportTable}>
-            <span className="icon">📊</span>
-            <span className="icon-text">{showReportTable ? 'Show Mine' : 'Show Report'}</span>
+          <div id="toggle-report-table-button" class="icon-container" onClick={toggleReportTable}>
+            <span class="icon">📊</span>
+            <span class="icon-text">{showReportTable ? 'Show Mine' : 'Show Report'}</span>
           </div>
-          <div className="icon-container" onClick={handleVideoClick}>
-            <span className="icon">📹</span>
-            <span className="icon-text">Guidance</span>
+          <div id="guidance-button" class="icon-container" onClick={handleVideoClick}>
+            <span class="icon">📹</span>
+            <span class="icon-text">Guidance</span>
           </div>
-          <div className="icon-container" onClick={handleKnowledgeBaseClick}>
-            <span className="icon">📚</span>
-            <span className="icon-text">Knowledge Base</span>
+          <div id="knowledge-base-button" class="icon-container" onClick={handleKnowledgeBaseClick}>
+            <span class="icon">📚</span>
+            <span class="icon-text">Knowledge Base</span>
           </div>
         </div>
       </div>

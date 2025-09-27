@@ -6,6 +6,7 @@ import { Hud } from './Hud';
 import ReportTable from './ReportTable';
 import { DashboardHeader } from './DashboardHeader';
 import { Chatbot } from './Chatbot';
+import Tutorial from './Tutorial';
 import './App.css';
 import './ReportTable.css';
 
@@ -13,6 +14,8 @@ function App() {
   const [alertLevel, setAlertLevel] = useState<'high' | 'medium' | 'low' | 'none'>('none');
   const [showReportTable, setShowReportTable] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [tutorialCompleted, setTutorialCompleted] = useState(localStorage.getItem("tutorialDone") === 'true');
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,6 +32,11 @@ function App() {
     setShowReportTable(prev => !prev);
   };
 
+  const handleTutorialComplete = () => {
+    setTutorialCompleted(true);
+    console.log("Tutorial finished");
+  };
+
   if (isLoading) {
     return (
       <div className="loader-container">
@@ -39,6 +47,7 @@ function App() {
 
   return (
     <div className={`app-container ${alertLevel === 'high' ? 'high-alert' : ''}`}>
+      {!tutorialCompleted && <Tutorial onComplete={handleTutorialComplete} />}
       <DashboardHeader
         toggleAlert={toggleAlert}
         toggleReportTable={toggleReportTable}
@@ -49,7 +58,7 @@ function App() {
       {showReportTable ? (
         <ReportTable toggleReportTable={toggleReportTable} />
       ) : (
-        <Canvas camera={{ position: [0, 15, 20] }}>
+        <Canvas id="camera-feed" camera={{ position: [0, 15, 20] }}>
           <Camera>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1.5} />

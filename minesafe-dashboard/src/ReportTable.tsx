@@ -99,7 +99,7 @@ const ReportTable: React.FC<ReportTableProps> = ({ toggleReportTable }) => {
   }, [incidents, filterStatus, filterAssignee]);
 
   return (
-    <div className="report-table-container">
+    <div id="report-table" className="report-table-container">
       <button className="close-table-btn" onClick={toggleReportTable}>X</button>
       <h2>Incident Reports</h2>
 

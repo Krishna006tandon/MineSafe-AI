@@ -1,0 +1,47 @@
+[
+  {
+    "target": "#root",
+    "text": "Welcome to the MineSafe AI Dashboard! This quick tour will walk you through the key features.",
+    "position": "center"
+  },
+  {
+    "target": ".dashboard-header",
+    "text": "This is the main header. It provides a quick overview of the system's status and navigation controls.",
+    "position": "bottom"
+  },
+  {
+    "target": "#toggle-alert-button",
+    "text": "Click here to simulate a high-alert situation in the mine.",
+    "position": "bottom"
+  },
+  {
+    "target": "#toggle-report-table-button",
+    "text": "Use this button to switch between the 3D mine view and the incident report table.",
+    "position": "bottom"
+  },
+  {
+    "target": "#guidance-button",
+    "text": "Watch a video tutorial on how to use the dashboard.",
+    "position": "bottom"
+  },
+  {
+    "target": "#knowledge-base-button",
+    "text": "Access external resources and documentation about mining safety.",
+    "position": "bottom"
+  },
+  {
+    "target": "#camera-feed",
+    "text": "Here you can see the live camera feed from the mining site.",
+    "position": "right"
+  },
+  {
+    "target": "#report-table",
+    "text": "This table displays real-time reports and alerts from the AI.",
+    "position": "top"
+  },
+  {
+    "target": "#chatbot",
+    "text": "Use this chatbot to interact with the AI and ask questions.",
+    "position": "left"
+  }
+]

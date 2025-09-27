@@ -1,0 +1,194 @@
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { outline: 2px solid rgba(0, 123, 255, 0.7); }
+  70% { outline: 4px solid rgba(0, 123, 255, 0); }
+  100% { outline: 2px solid rgba(0, 123, 255, 0); }
+}
+
+.tutorial-overlay-box {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  transition: all 0.3s ease-in-out;
+}
+
+.tutorial-highlight {
+  position: relative;
+  z-index: 9999;
+  animation: pulse 2s infinite;
+  border-radius: 4px;
+  pointer-events: auto !important;
+}
+
+.tutorial-tooltip {
+  position: fixed;
+  z-index: 10000;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 350px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: top 0.3s, left 0.3s;
+  overflow: hidden; /* For progress bar */
+}
+
+/* Light Theme */
+.tutorial-tooltip.light {
+  background: linear-gradient(135deg, #ffffff, #f0f2f5);
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+/* Dark Theme */
+.tutorial-tooltip.dark {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #ecf0f1;
+  border: 1px solid #4a6fa5;
+}
+
+/* Tooltip Arrow */
+.tutorial-tooltip::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.tutorial-tooltip.top::after {
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-color: #ffffff transparent transparent transparent;
+}
+.tutorial-tooltip.dark.top::after {
+  border-color: #2c3e50 transparent transparent transparent;
+}
+
+.tutorial-tooltip.bottom::after {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-color: transparent transparent #ffffff transparent;
+}
+.tutorial-tooltip.dark.bottom::after {
+  border-color: transparent transparent #2c3e50 transparent;
+}
+
+.tutorial-tooltip.left::after {
+  left: 100%;
+  top: 50%;
+  margin-top: -10px;
+  border-width: 10px;
+  border-color: transparent transparent transparent #ffffff;
+}
+.tutorial-tooltip.dark.left::after {
+  border-color: transparent transparent transparent #2c3e50;
+}
+
+.tutorial-tooltip.right::after {
+  right: 100%;
+  top: 50%;
+  margin-top: -10px;
+  border-width: 10px;
+  border-color: transparent #ffffff transparent transparent;
+}
+.tutorial-tooltip.dark.right::after {
+  border-color: transparent #2c3e50 transparent transparent;
+}
+
+
+.tutorial-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background-color: #007bff;
+  transition: width 0.3s ease-in-out;
+}
+
+.tutorial-content {
+  position: relative;
+}
+
+.tutorial-content p {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.tutorial-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tutorial-step-counter {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.tutorial-buttons button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.tutorial-tooltip.light .tutorial-buttons button {
+  background-color: #007bff;
+  color: white;
+}
+.tutorial-tooltip.light .tutorial-buttons button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+.tutorial-tooltip.light .tutorial-buttons .skip-button {
+  background-color: transparent;
+  color: #6c757d;
+}
+.tutorial-tooltip.light .tutorial-buttons .skip-button:hover {
+  background-color: #e9ecef;
+}
+
+
+.tutorial-tooltip.dark .tutorial-buttons button {
+  background-color: #4a90e2;
+  color: white;
+}
+.tutorial-tooltip.dark .tutorial-buttons button:hover {
+  background-color: #357abd;
+  transform: translateY(-1px);
+}
+.tutorial-tooltip.dark .tutorial-buttons .skip-button {
+  background-color: transparent;
+  color: #bdc3c7;
+}
+.tutorial-tooltip.dark .tutorial-buttons .skip-button:hover {
+  background-color: #34495e;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .tutorial-tooltip {
+    max-width: 90vw;
+    padding: 0.8rem;
+  }
+  .tutorial-content p {
+    font-size: 0.9rem;
+  }
+  .tutorial-buttons button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
